@@ -1,0 +1,54 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin>
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>cn.youhaveme.Comma</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
+    <name>Comma</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor email="peichenwan@gmail.com" url="https://github.com/ppdxzz/Comma">YouHaveMe</vendor>
+
+    <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
+         Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
+    <description><![CDATA[
+        This is a tool that automatically generates SQL IN statements for multi row query values.<br>
+        <em>I think DataGrip users may prefer this plugin.</em>
+        <ul>
+            <li>Plugin can customize selected text for conversion. </li>
+            <li>The development of plugins cannot be separated from the vast number of users. If you have any feedback, please click <a href="mailto:peichenwan@gmail.com">here</a> to send us an email. </li>
+            <li>If you are not familiar with how to use this plugin, you can refer to the <a href="https://comma.youhaveme.cn">official documentation</a>. </li>
+        </ul>
+  ]]></description>
+
+    <change-notes>
+        <![CDATA[
+            <h2>1.1.0, 2023-07-01</h2>
+            <h3>Fixes:</h3>
+            <ul>
+                <li>重新设计了不同主题下的插件Logo</li>
+                <li>优化了“重复转换”提示</li>
+                <li>Bug 修复</li>
+            </ul>
+  ]]></change-notes>
+
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+        <notificationGroup displayType="BALLOON" id="Notice" />
+    </extensions>
+    <actions>
+        <action id="cn.youhaveme.comma.CommaInAction" class="cn.youhaveme.comma.CommaInAction" text="Comma"
+                description="This is a tool for converting SQL." icon="/icon/comma.svg">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="meta alt COMMA"/>
+        </action>
+    </actions>
+</idea-plugin>
