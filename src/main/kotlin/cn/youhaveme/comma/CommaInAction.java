@@ -13,6 +13,11 @@ import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.SelectionModel;
 import org.jetbrains.annotations.NotNull;
 
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,28 +32,37 @@ public class CommaInAction extends AnAction {
     public void actionPerformed(@NotNull AnActionEvent e) {
         Editor editor = e.getRequiredData(CommonDataKeys.EDITOR);
         SelectionModel selectionModel = editor.getSelectionModel();
-        // 没有选中的文本不做任何处理
-        if (StrUtil.isBlank(selectionModel.getSelectedText())) {
+        String clipboardContent = this.getClipboardContent();
+        // 没有选中的文本并且剪切板没有内容时不做任何处理
+        if (StrUtil.isBlank(selectionModel.getSelectedText()) && StrUtil.isBlank(clipboardContent)) {
             return;
         }
+        String pendingText = StrUtil.isBlank(selectionModel.getSelectedText()) ? clipboardContent : selectionModel.getSelectedText();
         // 如已转换过，则不再转换，弹框提示
-        if (selectionModel.getSelectedText().contains("('") || selectionModel.getSelectedText().contains("')")) {
-            showNotification("Title", "重复转换", NotificationType.INFORMATION);
+        if (pendingText.contains("('") || pendingText.contains("')")) {
+            showNotification("Warning", "Duplicate conversion", NotificationType.WARNING);
             return;
         }
         // 正则表达式匹配每行的代码并添加单引号和逗号
         Pattern pattern = Pattern.compile("(.+)");
-        Matcher matcher = pattern.matcher(selectionModel.getSelectedText());
+        Matcher matcher = pattern.matcher(pendingText);
         StringBuilder selectedText = new StringBuilder(1000);
+        int lineNum = 0;
         while (matcher.find()) {
+            ++lineNum;
             selectedText.append(" '").append(StrUtil.trim(matcher.group(1))).append("',").append("\n");
         }
         // 处理文本缩进格式，并加上括号封装 IN语句
-        String modifiedText = "(" + StrUtil.removePrefix(StrUtil.removeSuffix(selectedText.toString(), ",\n"), " ") + ");";
-        // 替换选中的文本为处理过的IN_SQL语句
-        WriteCommandAction.runWriteCommandAction(editor.getProject(), () -> {
-            editor.getDocument().replaceString(selectionModel.getSelectionStart(), selectionModel.getSelectionEnd(), modifiedText);
-        });
+        String modifiedText = "(" + (lineNum > 3 ? StrUtil.removePrefix(StrUtil.removeSuffix(selectedText.toString(), ",\n"), " ") : StrUtil.removePrefix(StrUtil.removeSuffix(selectedText.toString(), ",\n"), " ").replaceAll("\n", "")) + ");";
+        if (StrUtil.isNotBlank(selectionModel.getSelectedText())) {
+            WriteCommandAction.runWriteCommandAction(editor.getProject(), () -> {
+                editor.getDocument().replaceString(selectionModel.getSelectionStart(), selectionModel.getSelectionEnd(), modifiedText);
+            });
+        } else {
+            WriteCommandAction.runWriteCommandAction(editor.getProject(), () -> {
+                editor.getDocument().insertString(editor.getCaretModel().getOffset(), modifiedText);
+            });
+        }
     }
 
     /**
@@ -72,4 +86,20 @@ public class CommaInAction extends AnAction {
             }
         }).start();
     }
+
+    /**
+     * 获取系统剪切板内容
+     * @return 剪切板内容
+     */
+    private String getClipboardContent() {
+        String clipboardContent = "";
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        try {
+            clipboardContent = (String) clipboard.getData(DataFlavor.stringFlavor);
+        } catch (UnsupportedFlavorException | IOException e) {
+            log.error("获取剪切板内容异常", e);
+        }
+        return clipboardContent;
+    }
+
 }

@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "cn.youhaveme"
-version = "1.1.0"
+version = "1.2.0"
 
 dependencies {
     implementation("cn.hutool:hutool-all:5.8.16")
