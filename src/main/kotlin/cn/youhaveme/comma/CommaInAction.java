@@ -40,7 +40,7 @@ public class CommaInAction extends AnAction {
         String pendingText = StrUtil.isBlank(selectionModel.getSelectedText()) ? clipboardContent : selectionModel.getSelectedText();
         // 如已转换过，则不再转换，弹框提示
         if (pendingText.contains("('") || pendingText.contains("')")) {
-            showNotification("Warning", "Duplicate conversion", NotificationType.WARNING);
+            showNotification("Warning", "Duplicate conversion", NotificationType.WARNING, true);
             return;
         }
         // 正则表达式匹配每行的代码并添加单引号和逗号
@@ -70,10 +70,14 @@ public class CommaInAction extends AnAction {
      * @param title 标题
      * @param content 弹框内容
      * @param notificationType 弹框类型
+     * @param isAutoClose 是否自动关闭
      */
-    private void showNotification(String title, String content, NotificationType notificationType) {
+    private void showNotification(String title, String content, NotificationType notificationType, boolean isAutoClose) {
         Notification notification = new Notification("Notice", title, content, notificationType);
         notification.notify(null);
+        if (!isAutoClose) {
+            return;
+        }
         // 延迟关闭通知
         new Thread(() -> {
             try {
