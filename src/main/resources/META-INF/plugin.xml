@@ -25,6 +25,11 @@
 
     <change-notes>
         <![CDATA[
+            <h2>1.3.0, 2023-10-25</h2>
+            <ul>
+                <li>新增<em>Settings|Tools|Comma</em>子菜单项</li>
+                <li>优化了3行之内转换结果不再自动换行可配置</li>
+            </ul>
             <h2>1.2.0, 2023-07-21</h2>
             <ul>
                 <li>新增”剪切板“内容直接转换功能</li>
@@ -48,6 +53,12 @@
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
         <notificationGroup displayType="BALLOON" id="Notice" />
+        <applicationService serviceImplementation="cn.youhaveme.comma.settings.CommaSettingsState"/>
+        <applicationConfigurable
+            parentId="tools"
+            instance="cn.youhaveme.comma.settings.CommaSettingsConfigurable"
+            id="cn.youhaveme.comma.settings.CommaSettingsConfigurable"
+            displayName="Comma"/>
     </extensions>
     <actions>
         <action id="cn.youhaveme.comma.CommaInAction" class="cn.youhaveme.comma.CommaInAction" text="Comma"

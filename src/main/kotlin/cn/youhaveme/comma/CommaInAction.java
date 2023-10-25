@@ -3,6 +3,7 @@ package cn.youhaveme.comma;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.log.Log;
 import cn.hutool.log.LogFactory;
+import cn.youhaveme.comma.settings.CommaSettingsState;
 import com.intellij.notification.Notification;
 import com.intellij.notification.NotificationType;
 import com.intellij.openapi.actionSystem.AnAction;
@@ -53,7 +54,8 @@ public class CommaInAction extends AnAction {
             selectedText.append(" '").append(StrUtil.trim(matcher.group(1))).append("',").append("\n");
         }
         // 处理文本缩进格式，并加上括号封装 IN语句
-        String modifiedText = "(" + (lineNum > 3 ? StrUtil.removePrefix(StrUtil.removeSuffix(selectedText.toString(), ",\n"), " ") : StrUtil.removePrefix(StrUtil.removeSuffix(selectedText.toString(), ",\n"), " ").replaceAll("\n", "")) + ");";
+        int limitMergeLines = this.getSettingLimitMergeLines();
+        String modifiedText = "(" + (lineNum > limitMergeLines ? StrUtil.removePrefix(StrUtil.removeSuffix(selectedText.toString(), ",\n"), " ") : StrUtil.removePrefix(StrUtil.removeSuffix(selectedText.toString(), ",\n"), " ").replaceAll("\n", "")) + ");";
         if (StrUtil.isNotBlank(selectionModel.getSelectedText())) {
             WriteCommandAction.runWriteCommandAction(editor.getProject(), () -> {
                 editor.getDocument().replaceString(selectionModel.getSelectionStart(), selectionModel.getSelectionEnd(), modifiedText);
@@ -104,6 +106,15 @@ public class CommaInAction extends AnAction {
             log.error("获取剪切板内容异常", e);
         }
         return clipboardContent;
+    }
+
+    /**
+     * 获取配置中的最大允许合并行数
+     * @return 行数: int
+     */
+    private int getSettingLimitMergeLines() {
+        CommaSettingsState settings = CommaSettingsState.getInstance();
+        return Integer.parseInt(settings.limitMergeLines);
     }
 
 }
