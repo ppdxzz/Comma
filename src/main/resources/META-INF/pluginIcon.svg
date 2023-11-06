@@ -1,25 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">  <image id="image0" width="40" height="40" x="0" y="0"
-    xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAAABGdBTUEAALGPC/xhBQAAACBjSFJN
-AAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAByFBMVEX////Y682fzYN+vFhx
-tUZ8u1WXyXjI4rj8/fvp8+JQpBxjrjTF4bTj8NtgrDFYqCaXyHjr9eZus0N4uVF7ulRmrzh2t023
-2qKGwGOfzYJosTyUx3T7/Pm12J9SpR+IwWbF4LRwtUZ9u1Zeqy5rsj+JwWa626b5/Pjp8+PN5b9t
-s0KhzoVhrTLu9un+/v55uVHz+fCaynyy15v9/vxztkmIwWXB36/T6Mf0+fHg79el0IrY6sz3+/X2
-+vRztkqKwmhirTR6ulN1t0xxtUfH4rdQpB3N5b7o8+KLwml2uE77/fqLw2nb7NBdqy39/v2Kwmf+
-/v232aGz151ZqSiq05Hv9+tmrznk8duWyHdvtEXQ5sLe7tT0+fDV6cmTx3TS6MTJ47mizoa93KmS
-xnHq9ORVpiKIwWRhrTOo0o9sskCHwWSdzIDd7dNqsT7x9+2hzobZ685RpB3h79iOxG2k0Inb7NHZ
-683A3q2726b3+vTC37Cn0Y202J7X6syHwGPB3q75/Pf7+/vOzs7d3d3h4eHy8vLu7u7s7Oy1tbWg
-oKCmpqaZmZmLi4uNjY2VlZWJiYnw8PD8/Pzt7e24uLi7u7utra2urq6wsLDdM86FAAAAAWJLR0QA
-iAUdSAAAAAlwSFlzAAAOxAAADsQBlSsOGwAAAAd0SU1FB+cGHRMXAPFFYscAAAFuSURBVDjL7ZHZ
-N0JRFId3hbJTishURMrUlRJCMiWZZ6HM8zxPmTNmDPHvOl2v3XsfLE/8Hs761jrf2mfvfQD+8zvh
-8QVR0TFCEYcWK8DviONYPYmUOPH0IZOzeKIExERFEvGS5awFlZiSmhZ+OJ21xQyVOpNuUZrFMYkm
-GzFHm6vTE85j8fILRIVYZKCZKjYyiyUmMJeiheYyLAeoYBAFVoBKxCqC1WJUAdgYxBpyYa/FOqB9
-WXi8yGI9ERsaHdgETnEzukjFlshiaxtAe0cnaros3T3YS4GE4WldH/QPwKAa3UPmYUQnjDCIHq3e
-qwAYRRwDA+K4x8q0H+XE5BTA9Mws4TmcFzJv0r6wSAZaWiboxpVVZlG0xiffZ6QIrjs2NoEl3q3t
-HT3Ydk17+2rXAZsJ8kOf74hH4PhEcHoGP875hf/yiuSaS7y5vQvcPzw+Pb9wiFQQghRQFMVV8fXt
-/Tb08RkK+Dm75Kz1l/IFxnE79MG5d1sAAAA7dEVYdENvbW1lbnQAeHI6ZDpEQUZuTTRYOFVrZzo2
-LGo6NTQ1MDg3NjM5MzMwNjU2NTc2OSx0OjIzMDYyOTExte5HngAAACV0RVh0ZGF0ZTpjcmVhdGUA
-MjAyMy0wNi0yOVQxOToyMzowMCswODowMM0KnwsAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjMtMDYt
-MjlUMTk6MjM6MDArMDg6MDC8Vye3AAAAAElFTkSuQmCC" />
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+ "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="40px" height="40px" viewBox="0 0 40.000000 40.000000"
+ preserveAspectRatio="xMidYMid meet">
+<metadata>
+Created by potrace 1.16, written by Peter Selinger 2001-2019
+</metadata>
+<g transform="translate(0.000000,40.000000) scale(0.100000,-0.100000)"
+fill="#ED437E" stroke="none">
+<path d="M166 349 c-21 -25 -26 -41 -26 -89 0 -61 -16 -90 -38 -68 -7 7 -12
+20 -12 31 0 30 -19 9 -31 -35 -14 -52 9 -118 51 -148 39 -28 54 -26 34 5 -9
+14 -13 32 -9 42 6 17 7 17 16 0 20 -34 99 -10 99 31 0 7 4 12 10 12 15 0 22
+-43 11 -73 -13 -33 -2 -35 27 -4 67 71 54 188 -28 249 -18 13 -38 35 -46 51
+-18 34 -26 34 -58 -4z"/>
+</g>
 </svg>
