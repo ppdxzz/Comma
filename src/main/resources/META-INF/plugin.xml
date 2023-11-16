@@ -66,7 +66,7 @@
             displayName="Comma"/>
     </extensions>
     <actions>
-        <action id="cn.youhaveme.comma.CommaInAction" class="cn.youhaveme.comma.CommaInAction" text="Comma"
+        <action id="cn.youhaveme.comma.action.CommaConvertAction" class="cn.youhaveme.comma.action.CommaConvertAction" text="Comma"
                 description="This is a tool for converting SQL." icon="/icon/logo.svg">
             <add-to-group group-id="EditorPopupMenu" anchor="first"/>
             <keyboard-shortcut keymap="$default" first-keystroke="meta alt COMMA"/>

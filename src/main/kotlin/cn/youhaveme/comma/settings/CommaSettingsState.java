@@ -23,6 +23,10 @@ public class CommaSettingsState implements PersistentStateComponent<CommaSetting
      * 默认最大合并行数
      */
     public String limitMergeLines = "3";
+    /**
+     * 是否去除空格
+     */
+    public boolean trimWhiteSpaceStatus = false;
 
     public static CommaSettingsState getInstance() {
         return ApplicationManager.getApplication().getService(CommaSettingsState.class);

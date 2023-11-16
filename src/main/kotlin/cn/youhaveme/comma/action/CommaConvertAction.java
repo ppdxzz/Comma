@@ -1,4 +1,4 @@
-package cn.youhaveme.comma;
+package cn.youhaveme.comma.action;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.log.Log;
@@ -26,7 +26,7 @@ import java.util.regex.Pattern;
  * 查询值转 IN_SQL 插件
  * @author youhaveme.cn
  */
-public class CommaInAction extends AnAction {
+public class CommaConvertAction extends AnAction {
     Log log = LogFactory.get();
 
     @Override
