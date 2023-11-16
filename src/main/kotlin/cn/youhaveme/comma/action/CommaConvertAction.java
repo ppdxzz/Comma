@@ -55,7 +55,7 @@ public class CommaConvertAction extends AnAction {
         }
         // 处理文本缩进格式，并加上括号封装 IN语句
         int limitMergeLines = this.getSettingLimitMergeLines();
-        String modifiedText = "(" + (lineNum > limitMergeLines ? StrUtil.removePrefix(StrUtil.removeSuffix(selectedText.toString(), ",\n"), " ") : StrUtil.removePrefix(StrUtil.removeSuffix(selectedText.toString(), ",\n"), " ").replaceAll("\n", "")) + ");";
+        String modifiedText = handleSelectedText(lineNum > limitMergeLines, selectedText.toString());
         if (StrUtil.isNotBlank(selectionModel.getSelectedText())) {
             WriteCommandAction.runWriteCommandAction(editor.getProject(), () -> {
                 editor.getDocument().replaceString(selectionModel.getSelectionStart(), selectionModel.getSelectionEnd(), modifiedText);
@@ -115,6 +115,27 @@ public class CommaConvertAction extends AnAction {
     private int getSettingLimitMergeLines() {
         CommaSettingsState settings = CommaSettingsState.getInstance();
         return Integer.parseInt(settings.limitMergeLines);
+    }
+
+    /**
+     * 处理结果文本
+     * @param isOriginalStyle 是否输出原始样式
+     * @param selectedTextString 结果文本
+     * @return result
+     */
+    private String handleSelectedText(boolean isOriginalStyle, String selectedTextString) {
+        String result = "(";
+        if (isOriginalStyle) {
+            result += StrUtil.removePrefix(StrUtil.removeSuffix(selectedTextString, ",\n"), " ");
+        } else {
+            result += StrUtil.removePrefix(StrUtil.removeSuffix(selectedTextString, ",\n"), " ").replaceAll("\n", "");
+            if (CommaSettingsState.getInstance().trimWhiteSpaceStatus) {
+                result = result.replaceAll(" ", "");
+            }
+        }
+
+        result += ");";
+        return result;
     }
 
 }
