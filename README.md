@@ -1,3 +1,7 @@
+<h1 align="center">
+  <img src="image/logo.svg" alt="Comma" width="200">
+  <br>Comma<br>
+</h1>
 <div align="center">
 
 ![Plugin](https://img.shields.io/badge/Plugin-Comma-brightgreen?color=%23ED437E)
