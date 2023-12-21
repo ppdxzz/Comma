@@ -41,7 +41,7 @@ public class CommaConvertAction extends AnAction {
         String pendingText = StrUtil.isBlank(selectionModel.getSelectedText()) ? clipboardContent : selectionModel.getSelectedText();
         // 如已转换过，则不再转换，弹框提示
         if (pendingText.contains("('") || pendingText.contains("')")) {
-            showNotification("Warning", "Duplicate conversion", NotificationType.WARNING, true);
+            showNotification("", "重复转换", NotificationType.WARNING, true);
             return;
         }
         // 正则表达式匹配每行的代码并添加单引号和逗号
@@ -57,13 +57,9 @@ public class CommaConvertAction extends AnAction {
         int limitMergeLines = this.getSettingLimitMergeLines();
         String modifiedText = handleSelectedText(lineNum > limitMergeLines, selectedText.toString());
         if (StrUtil.isNotBlank(selectionModel.getSelectedText())) {
-            WriteCommandAction.runWriteCommandAction(editor.getProject(), () -> {
-                editor.getDocument().replaceString(selectionModel.getSelectionStart(), selectionModel.getSelectionEnd(), modifiedText);
-            });
+            WriteCommandAction.runWriteCommandAction(editor.getProject(), () -> editor.getDocument().replaceString(selectionModel.getSelectionStart(), selectionModel.getSelectionEnd(), modifiedText));
         } else {
-            WriteCommandAction.runWriteCommandAction(editor.getProject(), () -> {
-                editor.getDocument().insertString(editor.getCaretModel().getOffset(), modifiedText);
-            });
+            WriteCommandAction.runWriteCommandAction(editor.getProject(), () -> editor.getDocument().insertString(editor.getCaretModel().getOffset(), modifiedText));
         }
     }
 
