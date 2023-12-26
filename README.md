@@ -29,7 +29,7 @@ Comma 是一款基于IntelliJ 的数据库辅助插件，可以帮助我们开�
 <p>点击 <code>Install</code> 按钮安装插件，等待下载完成即可。</p>
 
 
-### 👏 快速使用
+### 🔥 快速使用
 你只需要选择需要转换的几行数据即可，右键选择 <code>Comma</code> ，即可完成转换，快去试试呀。
 <p>
     <img src="image/quick_access.gif" alt="" />
@@ -41,6 +41,15 @@ Comma 是一款基于IntelliJ 的数据库辅助插件，可以帮助我们开�
 Comma 是一个开源的项目，我们欢迎您的贡献和支持。
 
 我们的工具难免会有不足需要改善的地方，如果你在使用的过程中有什么问题，欢迎及时向我们反馈，你可以直接在 GitHub 上提交 Issue告知我们，或者你也可以通过发邮件的方式来表达你的问题，感谢广大朋友们支持。
+
+
+### 👏 鸣谢
+感谢 JetBrains 提供的免费开源许可证及开发工具支持。
+<div style="text-align: center">
+    <a href="https://jb.gg/OpenSourceSupport" target="_blank">
+        <img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg" alt="JetBrains Logo" width="200px" height="200px">
+    </a>
+</div>
 
 
 ### 📬 开源协议
