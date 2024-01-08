@@ -8,7 +8,8 @@ group = "cn.youhaveme"
 version = "1.3.1"
 
 dependencies {
-    implementation("cn.hutool:hutool-all:5.8.16")
+    implementation("cn.hutool:hutool-core:5.8.24")
+    implementation("cn.hutool:hutool-log:5.8.24")
 }
 
 repositories {
