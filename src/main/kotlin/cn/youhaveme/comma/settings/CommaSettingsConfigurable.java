@@ -32,7 +32,6 @@ public class CommaSettingsConfigurable implements Configurable {
     public boolean isModified() {
         CommaSettingsState settings = CommaSettingsState.getInstance();
         boolean modified = !commaSettingsComponent.getLimitMergeLinesText().equals(settings.limitMergeLines);
-        modified |= commaSettingsComponent.getTrimWhiteSpaceStatus() != settings.trimWhiteSpaceStatus;
         return modified;
     }
 
@@ -40,14 +39,12 @@ public class CommaSettingsConfigurable implements Configurable {
     public void apply() {
         CommaSettingsState settings = CommaSettingsState.getInstance();
         settings.limitMergeLines = commaSettingsComponent.getLimitMergeLinesText();
-        settings.trimWhiteSpaceStatus = commaSettingsComponent.getTrimWhiteSpaceStatus();
     }
 
     @Override
     public void reset() {
         CommaSettingsState settings = CommaSettingsState.getInstance();
         commaSettingsComponent.setLimitMergeLinesText(settings.limitMergeLines);
-        commaSettingsComponent.setTrimWhiteSpaceStatus(settings.trimWhiteSpaceStatus);
     }
 
     @Override
