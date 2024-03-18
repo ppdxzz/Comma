@@ -1,5 +1,7 @@
 package cn.youhaveme.comma.settings;
 
+import cn.hutool.core.lang.ResourceClassLoader;
+import com.intellij.openapi.util.IconLoader;
 import com.intellij.ui.HyperlinkLabel;
 import com.intellij.ui.components.JBCheckBox;
 import com.intellij.ui.components.JBLabel;
@@ -21,8 +23,8 @@ public class CommaSettingsComponent {
                 .addLabeledComponent(new JBLabel("Limit merge lines: "), limitMergeLinesText, 1, false)
                 .addTooltip("It will be merged into one row of results.")
                 .addComponent(trimWhiteSpaceStatus, 1)
-                .addVerticalGap(10)
-                .addComponent(homeLink(), 1)
+                // .addVerticalGap(10)
+                // .addComponent(homeLink(), 1)
                 .addComponentFillVertically(new JPanel(), 0)
                 .getPanel();
     }
@@ -54,8 +56,12 @@ public class CommaSettingsComponent {
 
     private HyperlinkLabel homeLink() {
         HyperlinkLabel hyperlinkLabel = new HyperlinkLabel();
-        hyperlinkLabel.setHyperlinkText("Explore COMMA");
+        hyperlinkLabel.setHyperlinkText("Comma插件官网");
         hyperlinkLabel.setHyperlinkTarget("https://comma.youhaveme.cn/");
+        hyperlinkLabel.setIconAtRight(false);
+        Icon icon = IconLoader.getIcon("/icon/logo.svg", ResourceClassLoader.class);
+        hyperlinkLabel.setIcon(icon);
+        hyperlinkLabel.setUseIconAsLink(true);
         return hyperlinkLabel;
     }
 
