@@ -78,7 +78,9 @@
         <action id="cn.youhaveme.comma.action.CommaConvertAction" class="cn.youhaveme.comma.action.CommaConvertAction" text="Comma"
                 description="This is a tool for converting SQL." icon="/icon/logo.svg">
             <add-to-group group-id="EditorPopupMenu" anchor="first"/>
-            <keyboard-shortcut keymap="$default" first-keystroke="meta alt COMMA"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="control alt COMMA"/>
+            <keyboard-shortcut keymap="Mac OS X" first-keystroke="control meta COMMA" replace-all="true"/>
+            <keyboard-shortcut keymap="Mac OS X 10.5+" first-keystroke="control meta COMMA" replace-all="true"/>
         </action>
     </actions>
 </idea-plugin>
