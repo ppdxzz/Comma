@@ -19,13 +19,17 @@
             <li>Supports all database management software under JetBrains. </li>
             <li>Plugin can customize selected text for conversion. </li>
             <li>To configure, open <strong>Settings | Tools | Comma</strong>. </li>
-            <li>If you are not familiar with how to use this plugin, you can refer to the <a href="https://comma.youhaveme.cn">documentation</a>. </li>
+            <li>If you are not familiar with how to use this plugin, you can refer to the <a href="https://comma.ppdxzz.cn">documentation</a>. </li>
         </ul>
         For those who frequently operate and maintain databases, this tool should be your favorite. If you have any feedback, please click <a href="mailto:peichenwan@gmail.com">here</a> to send us an email.
   ]]></description>
 
     <change-notes>
         <![CDATA[
+            <h2>1.3.4, 2024-04-28</h2>
+            <ul>
+                <li>修复Windows下快捷键无效的问题</li>
+            </ul>
             <h2>1.3.3, 2024-03-21</h2>
             <ul>
                 <li>移除无关依赖项</li>

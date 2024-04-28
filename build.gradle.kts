@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "cn.youhaveme"
-version = "1.3.3"
+version = "1.3.4"
 
 dependencies {
     implementation("cn.hutool:hutool-core:5.8.24")
