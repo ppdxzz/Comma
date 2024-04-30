@@ -34,7 +34,7 @@ Comma 是一款基于IntelliJ 的数据库辅助插件，可以帮助我们开�
 <p>
     <img src="image/quick_access.gif" alt="" />
 </p>
-同时快速转换也是支持快捷键，Mac用户 <code>Control+Option+ ,</code> ，而Windows用户 <code>Ctrl+Alt+ ,</code>，朋友们可以自己尝试一下。
+同时快速转换也是支持快捷键，Mac用户 <code>Control+Command+ ,</code> ，而Windows用户 <code>Ctrl+Alt+ ,</code>，朋友们可以自己尝试一下。
 
 
 ### 🛎 贡献和支持
