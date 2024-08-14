@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "cn.youhaveme"
-version = "1.3.4"
+version = "1.3.5"
 
 dependencies {
     implementation("cn.hutool:hutool-core:5.8.24")
@@ -37,7 +37,7 @@ tasks {
 
     patchPluginXml {
         sinceBuild.set("222")
-        untilBuild.set("241.*")
+        untilBuild.set("242.*")
     }
 
     signPlugin {
