@@ -17,8 +17,6 @@ import org.slf4j.LoggerFactory;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.UnsupportedFlavorException;
-import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -83,8 +81,7 @@ public class CommaConvertAction extends AnAction {
                 Thread.sleep(3000);
                 // 关闭通知
                 notification.expire();
-            } catch (InterruptedException e) {
-                log.error("通知关闭异常", e);
+            } catch (InterruptedException ignored) {
             }
         }).start();
     }
@@ -98,8 +95,7 @@ public class CommaConvertAction extends AnAction {
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         try {
             clipboardContent = (String) clipboard.getData(DataFlavor.stringFlavor);
-        } catch (UnsupportedFlavorException | IOException e) {
-            log.error("获取剪切板内容异常", e);
+        } catch (Exception ignored) {
         }
         return clipboardContent;
     }
