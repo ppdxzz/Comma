@@ -29,7 +29,10 @@ public class CommaConvertAction extends AnAction {
 
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
-        Editor editor = e.getRequiredData(CommonDataKeys.EDITOR);
+        Editor editor = e.getData(CommonDataKeys.EDITOR);
+        if (editor == null) {
+            throw new IllegalStateException("Required data is not available");
+        }
         SelectionModel selectionModel = editor.getSelectionModel();
         String clipboardContent = this.getClipboardContent();
         // 没有选中的文本并且剪切板没有内容时不做任何处理
