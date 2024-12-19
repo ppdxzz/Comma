@@ -1,5 +1,6 @@
 package cn.youhaveme.comma.settings;
 
+import com.intellij.ui.TitledSeparator;
 import com.intellij.ui.components.JBLabel;
 import com.intellij.util.ui.FormBuilder;
 import org.jetbrains.annotations.NotNull;
@@ -14,8 +15,12 @@ public class CommaSettingsComponent {
     private final NumericTextField limitMergeLinesText = new NumericTextField();
 
     public CommaSettingsComponent() {
+        JBLabel limitLabel = new JBLabel("Limit merge lines: ");
+        limitLabel.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));
+
         mainPanel = FormBuilder.createFormBuilder()
-                .addLabeledComponent(new JBLabel("Limit merge lines: "), limitMergeLinesText, 1, false)
+                .addComponent(new TitledSeparator("Merge"))
+                .addLabeledComponent(limitLabel, limitMergeLinesText)
                 .addTooltip("It will be merged into one row of results.")
                 .addComponentFillVertically(new JPanel(), 0)
                 .getPanel();
