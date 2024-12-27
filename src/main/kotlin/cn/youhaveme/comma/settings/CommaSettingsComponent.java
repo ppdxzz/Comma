@@ -13,15 +13,19 @@ import javax.swing.*;
 public class CommaSettingsComponent {
     private final JPanel mainPanel;
     private final NumericTextField limitMergeLinesText = new NumericTextField();
+    private final JCheckBox symbolCheckBox = new JCheckBox("Default to add symbols to the results");
 
     public CommaSettingsComponent() {
-        JBLabel limitLabel = new JBLabel("Limit merge lines: ");
-        limitLabel.setBorder(BorderFactory.createEmptyBorder(0, 20, 0, 0));
-
         mainPanel = FormBuilder.createFormBuilder()
                 .addComponent(new TitledSeparator("Merge"))
-                .addLabeledComponent(limitLabel, limitMergeLinesText)
+                .setFormLeftIndent(20)
+                .addLabeledComponent(new JBLabel("Merge lines: "), limitMergeLinesText)
                 .addTooltip("It will be merged into one row of results.")
+                .setFormLeftIndent(0)
+                .addComponent(new TitledSeparator("Other"))
+                .setFormLeftIndent(20)
+                .addComponent(symbolCheckBox)
+                .setFormLeftIndent(0)
                 .addComponentFillVertically(new JPanel(), 0)
                 .getPanel();
     }
@@ -43,5 +47,12 @@ public class CommaSettingsComponent {
         limitMergeLinesText.setText(newText);
     }
 
+    public boolean getSymbolCheckBoxSelected() {
+        return symbolCheckBox.isSelected();
+    }
+
+    public void setSymbolCheckBoxSelected(boolean selected) {
+        symbolCheckBox.setSelected(selected);
+    }
 
 }

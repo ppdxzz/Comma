@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -50,9 +51,17 @@ public class CommaConvertAction extends AnAction {
         Matcher matcher = pattern.matcher(pendingText);
         StringBuilder selectedText = new StringBuilder(1000);
         int lineNum = 0;
-        while (matcher.find()) {
-            ++lineNum;
-            selectedText.append(" '").append(StringUtils.trim(matcher.group(1))).append("',").append("\n");
+        // 这一坨后续优化一下，现在不想优化
+        if (isSymbolCheckBoxSelected()) {
+            while (matcher.find()) {
+                ++lineNum;
+                selectedText.append(" '").append(StringUtils.trim(matcher.group(1))).append("',").append("\n");
+            }
+        } else {
+            while (matcher.find()) {
+                ++lineNum;
+                selectedText.append(" ").append(StringUtils.trim(matcher.group(1))).append(",").append("\n");
+            }
         }
         // 处理文本缩进格式，并加上括号封装 IN语句
         int limitMergeLines = this.getSettingLimitMergeLines();
@@ -108,8 +117,17 @@ public class CommaConvertAction extends AnAction {
      * @return 行数: int
      */
     private int getSettingLimitMergeLines() {
-        CommaSettingsState settings = CommaSettingsState.getInstance();
+        CommaSettingsState.State settings = Objects.requireNonNull(CommaSettingsState.getInstance().getState());
         return Integer.parseInt(settings.limitMergeLines);
+    }
+
+    /**
+     * 获取配置中的是否添加符号
+     * @return T or F
+     */
+    private boolean isSymbolCheckBoxSelected() {
+        CommaSettingsState.State settings = Objects.requireNonNull(CommaSettingsState.getInstance().getState());
+        return settings.symbolCheckBoxSelected;
     }
 
     /**

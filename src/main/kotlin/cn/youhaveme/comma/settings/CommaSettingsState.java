@@ -4,7 +4,7 @@ import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.components.PersistentStateComponent;
 import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
-import com.intellij.util.xmlb.XmlSerializerUtil;
+import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -17,28 +17,33 @@ import org.jetbrains.annotations.Nullable;
     name = "cn.youhaveme.comma.settings.CommaSettingsState",
     storages = @Storage("SdkSettingsPlugin.xml")
 )
-public class CommaSettingsState implements PersistentStateComponent<CommaSettingsState> {
+public class CommaSettingsState implements PersistentStateComponent<CommaSettingsState.State> {
 
-    /**
-     * 默认最大合并行数
-     */
-    public String limitMergeLines = "3";
-    /**
-     * 是否去除空格
-     */
-    public boolean trimWhiteSpaceStatus = false;
+    public static class State {
+        /**
+         * 默认最大合并行数
+         */
+        @NonNls
+        public String limitMergeLines = "3";
+        /**
+         * 默认添加符号
+         */
+        public boolean symbolCheckBoxSelected = true;
+    }
+
+    private State appState = new State();
 
     public static CommaSettingsState getInstance() {
         return ApplicationManager.getApplication().getService(CommaSettingsState.class);
     }
 
     @Override
-    public @Nullable CommaSettingsState getState() {
-        return this;
+    public @Nullable CommaSettingsState.State getState() {
+        return appState;
     }
 
     @Override
-    public void loadState(@NotNull CommaSettingsState state) {
-        XmlSerializerUtil.copyBean(state, this);
+    public void loadState(@NotNull State state) {
+        appState = state;
     }
 }
