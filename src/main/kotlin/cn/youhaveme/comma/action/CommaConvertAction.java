@@ -18,6 +18,8 @@ import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.util.Objects;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -83,19 +85,9 @@ public class CommaConvertAction extends AnAction {
     private void showNotification(String title, String content, NotificationType notificationType, boolean isAutoClose) {
         Notification notification = new Notification("Notice", title, content, notificationType);
         notification.notify(null);
-        if (!isAutoClose) {
-            return;
+        if (isAutoClose) {
+            Executors.newSingleThreadScheduledExecutor().schedule(notification::expire, 3, TimeUnit.SECONDS);
         }
-        // 延迟关闭通知
-        new Thread(() -> {
-            try {
-                // 等待3秒
-                Thread.sleep(3000);
-                // 关闭通知
-                notification.expire();
-            } catch (InterruptedException ignored) {
-            }
-        }).start();
     }
 
     /**
@@ -103,13 +95,12 @@ public class CommaConvertAction extends AnAction {
      * @return 剪切板内容
      */
     private String getClipboardContent() {
-        String clipboardContent = "";
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         try {
-            clipboardContent = (String) clipboard.getData(DataFlavor.stringFlavor);
+            return (String) clipboard.getData(DataFlavor.stringFlavor);
         } catch (Exception ignored) {
+            return "";
         }
-        return clipboardContent;
     }
 
     /**
