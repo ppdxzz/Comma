@@ -5,6 +5,7 @@ import com.intellij.openapi.util.NlsContexts;
 import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
+import java.util.Objects;
 
 /**
  * Provides controller functionality for application settings.
@@ -30,21 +31,24 @@ public class CommaSettingsConfigurable implements Configurable {
 
     @Override
     public boolean isModified() {
-        CommaSettingsState settings = CommaSettingsState.getInstance();
+        CommaSettingsState.State settings = Objects.requireNonNull(CommaSettingsState.getInstance().getState());
         boolean modified = !commaSettingsComponent.getLimitMergeLinesText().equals(settings.limitMergeLines);
+        modified |= commaSettingsComponent.getSymbolCheckBoxSelected() != settings.symbolCheckBoxSelected;
         return modified;
     }
 
     @Override
     public void apply() {
-        CommaSettingsState settings = CommaSettingsState.getInstance();
+        CommaSettingsState.State settings = Objects.requireNonNull(CommaSettingsState.getInstance().getState());
         settings.limitMergeLines = commaSettingsComponent.getLimitMergeLinesText();
+        settings.symbolCheckBoxSelected = commaSettingsComponent.getSymbolCheckBoxSelected();
     }
 
     @Override
     public void reset() {
-        CommaSettingsState settings = CommaSettingsState.getInstance();
+        CommaSettingsState.State settings = Objects.requireNonNull(CommaSettingsState.getInstance().getState());
         commaSettingsComponent.setLimitMergeLinesText(settings.limitMergeLines);
+        commaSettingsComponent.setSymbolCheckBoxSelected(settings.symbolCheckBoxSelected);
     }
 
     @Override
