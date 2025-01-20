@@ -14,6 +14,7 @@ public class CommaSettingsComponent {
     private final JPanel mainPanel;
     private final NumericTextField limitMergeLinesText = new NumericTextField();
     private final JCheckBox symbolCheckBox = new JCheckBox("Default to add symbols to the results");
+    private final JCheckBox semicolonCheckBox = new JCheckBox("Default to add semicolon to the after final results");
 
     public CommaSettingsComponent() {
         mainPanel = FormBuilder.createFormBuilder()
@@ -25,6 +26,7 @@ public class CommaSettingsComponent {
                 .addComponent(new TitledSeparator("Other"))
                 .setFormLeftIndent(20)
                 .addComponent(symbolCheckBox)
+                .addComponent(semicolonCheckBox)
                 .setFormLeftIndent(0)
                 .addComponentFillVertically(new JPanel(), 0)
                 .getPanel();
@@ -55,4 +57,11 @@ public class CommaSettingsComponent {
         symbolCheckBox.setSelected(selected);
     }
 
+    public boolean getSemicolonCheckBoxSelected() {
+        return semicolonCheckBox.isSelected();
+    }
+
+    public void setSemicolonCheckBoxSelected(boolean selected) {
+        semicolonCheckBox.setSelected(selected);
+    }
 }
