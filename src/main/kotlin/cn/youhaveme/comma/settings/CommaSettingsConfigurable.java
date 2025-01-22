@@ -34,6 +34,7 @@ public class CommaSettingsConfigurable implements Configurable {
         CommaSettingsState.State settings = Objects.requireNonNull(CommaSettingsState.getInstance().getState());
         boolean modified = !commaSettingsComponent.getLimitMergeLinesText().equals(settings.limitMergeLines);
         modified |= commaSettingsComponent.getSymbolCheckBoxSelected() != settings.symbolCheckBoxSelected;
+        modified |= commaSettingsComponent.getSemicolonCheckBoxSelected() != settings.semicolonCheckBoxSelected;
         return modified;
     }
 
@@ -42,6 +43,7 @@ public class CommaSettingsConfigurable implements Configurable {
         CommaSettingsState.State settings = Objects.requireNonNull(CommaSettingsState.getInstance().getState());
         settings.limitMergeLines = commaSettingsComponent.getLimitMergeLinesText();
         settings.symbolCheckBoxSelected = commaSettingsComponent.getSymbolCheckBoxSelected();
+        settings.semicolonCheckBoxSelected = commaSettingsComponent.getSemicolonCheckBoxSelected();
     }
 
     @Override
@@ -49,6 +51,7 @@ public class CommaSettingsConfigurable implements Configurable {
         CommaSettingsState.State settings = Objects.requireNonNull(CommaSettingsState.getInstance().getState());
         commaSettingsComponent.setLimitMergeLinesText(settings.limitMergeLines);
         commaSettingsComponent.setSymbolCheckBoxSelected(settings.symbolCheckBoxSelected);
+        commaSettingsComponent.setSemicolonCheckBoxSelected(settings.semicolonCheckBoxSelected);
     }
 
     @Override

@@ -122,6 +122,15 @@ public class CommaConvertAction extends AnAction {
     }
 
     /**
+     * 获取配置中结尾是否添加分号
+     * @return T or F
+     */
+    private boolean isSemicolonCheckBoxSelected() {
+        CommaSettingsState.State settings = Objects.requireNonNull(CommaSettingsState.getInstance().getState());
+        return settings.semicolonCheckBoxSelected;
+    }
+
+    /**
      * 处理结果文本
      * @param isOriginalStyle 是否输出原始样式
      * @param selectedTextString 结果文本
@@ -139,7 +148,7 @@ public class CommaConvertAction extends AnAction {
             // }
         }
 
-        result += ");";
+        result += isSemicolonCheckBoxSelected() ? ");" : ")";
         return result;
     }
 

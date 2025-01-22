@@ -29,6 +29,10 @@ public class CommaSettingsState implements PersistentStateComponent<CommaSetting
          * 默认添加符号
          */
         public boolean symbolCheckBoxSelected = true;
+        /**
+         * 默认结尾添加分号
+         */
+        public boolean semicolonCheckBoxSelected = true;
     }
 
     private State appState = new State();
