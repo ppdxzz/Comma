@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "cn.youhaveme"
-version = "1.4.1"
+version = "1.4.3"
 
 dependencies {
 }
@@ -35,7 +35,7 @@ tasks {
 
     patchPluginXml {
         sinceBuild.set("222")
-        untilBuild.set("251.*")
+        untilBuild.set("253.*")
     }
 
     signPlugin {
