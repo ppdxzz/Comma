@@ -142,10 +142,6 @@ public class CommaConvertAction extends AnAction {
             result += StringUtils.stripStart(StringUtils.stripEnd(selectedTextString, ",\n"), " ");
         } else {
             result += StringUtils.stripStart(StringUtils.stripEnd(selectedTextString, ",\n"), " ").replaceAll("\n", "");
-            // v1.3.2-beta: 部分用户反馈说这个功能有点鸡肋，基本上用不到，暂且移除，后续优化
-            // if (CommaSettingsState.getInstance().trimWhiteSpaceStatus) {
-            //     result = result.replaceAll(" ", "");
-            // }
         }
 
         result += isSemicolonCheckBoxSelected() ? ");" : ")";
